@@ -19,7 +19,7 @@
 - [ ] En la siguiente pantalla , se debería mostrar solo los proyectos a los que aplica el trabajador.
 - [ ] A nivel móviles, el envío del chat no funciona con la tecla enter. 
 
-# Rescumen de actividades
+# Resumen de actividades
 - 04/24/2020
 
     - Lectura completa de implementación del chat bot para conocer.  
