@@ -1,0 +1,71 @@
+
+
+.slider-wrap{
+	position: relative;
+	display: flex;
+	justify-content: center;
+	/*height: 50em;*/
+
+}
+
+.slider-container{
+	position: absolute;
+	top: 50%;
+	margin-top: -250px;
+	z-index: 999;
+	width: 100%;
+}
+
+.slider-container2{
+	position: absolute;
+	top: 50%;
+	margin-top: -100px;
+	z-index: 999;
+	width: 100%;
+}
+
+.slider-container3{
+	position: absolute;
+	top: 50%;
+	margin-top: -130px;
+	z-index: 999;
+	width: 100%;
+}
+
+.form-title{
+	width: 100%;
+	padding: 12px;
+	background: #2D99CC;
+}
+
+.form-title h1{
+	font-family: "Open sans";
+	font-size: 25px;
+	font-weight: 200;
+	text-align: center;
+	color: #fff;
+}
+
+.slider-form{
+	width: 100%;
+	background: rgba(255, 255, 255, 0.9);
+	padding: 25px;
+}
+
+.slider-form input[type=text],
+.slider-form input[type=email],
+.slider-form input[type=password]{
+	width: 100%;
+	padding: 8px;
+	margin: 8px 0;
+}
+
+.slider-form input[type=button]{
+	width: 100px;
+	padding: 5px;
+	margin-top: 10px;
+	border: none;
+	background: #2D99CC;
+	color: #fff;
+	cursor:pointer;
+}

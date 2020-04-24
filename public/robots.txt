@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /https://www.laboraplanet.com/politica/
+Disallow: /politica/
+
+Sitemap: https://laboraplanet.com/sitemap_s.xml
+

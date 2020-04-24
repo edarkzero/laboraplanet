@@ -1,0 +1,43 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Handle Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+<Files ~ "\.(png|jpe?g|gif)$">
+  Header set X-Robots-Tag "noindex"
+</Files>    
+    
+</IfModule>
+<Files ~ "\.(png|jpe?g|gif)$">
+  Header set X-Robots-Tag "noindex"
+</Files>
+RewriteCond %{HTTP_HOST} ^laboraplanet\.laboraplanet\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.laboraplanet\.laboraplanet\.com$
+RewriteRule ^/?$ "https\:\/\/www\.laboraplanet\.laboraplanet\.com\/" [R=301,L]
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-SSL} !on
+RewriteCond %{HTTP_HOST} ^laboraplanet\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.laboraplanet\.com$
+RewriteRule ^/?$ "https\:\/\/www\.laboraplanet\.com\/" [R=301,L]
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php72” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php72 .php .php7 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
