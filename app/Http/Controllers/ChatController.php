@@ -144,6 +144,7 @@ Class ChatController extends Controller
 					->where('v',1)
 					->update(['v'=>0]);
 
+         //The reason of the orWhere is  that one user could became an contact too
         $chat = Chat::where(function($query) use ($id){
             $query->where('id_usuario',Auth::user()->id)
                   ->where('id_contacto',$id);                  
@@ -214,6 +215,7 @@ Class ChatController extends Controller
 			}
         $d =$request->fech;
 
+			//This creating now must be related to the project too
 		if ($request->video==0) {
 		    Chat::create([
 	            'id_usuario'=>$request->id_usuario,
