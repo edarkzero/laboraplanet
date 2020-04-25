@@ -19,6 +19,11 @@
 - [ ] En la siguiente pantalla , se debería mostrar solo los proyectos a los que aplica el trabajador.
 - [ ] A nivel móviles, el envío del chat no funciona con la tecla enter. 
 
+# Consultas la BDD
+- Relaciones de usuarios
+
+    - Poseen una clave foranea con user_cono y solici_men
+
 # Resumen de actividades
 - 04/24/2020
 
