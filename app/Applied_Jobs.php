@@ -4,6 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Applied_Jobs
+ * @package App
+ * @property-read chat
+ */
 class Applied_Jobs extends Model
 {
     
@@ -20,5 +25,7 @@ class Applied_Jobs extends Model
 
 
 
-
+    public function chat() {
+        return $this->belongsTo('App\Chat','id_trabajo_aplicado','id_trabajo_aplicado');
+    }
 }
