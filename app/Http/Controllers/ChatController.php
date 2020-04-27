@@ -220,6 +220,7 @@ Class ChatController extends Controller
 		    Chat::create([
 	            'id_usuario'=>$request->id_usuario,
 	            'id_contacto'=>$request->id_contacto,
+	            'id_trabajo_aplicado'=> $request->id_trabajo_aplicado,
 	            'chat'=>$request->chat,
 	            'v'=>'1',
 				'fecha'=>$d
@@ -228,6 +229,7 @@ Class ChatController extends Controller
 			Chat::create([
 				'id_usuario'=>$request->id_usuario,
 				'id_contacto'=>$request->id_contacto,
+                'id_trabajo_aplicado'=> $request->id_trabajo_aplicado,
 				'chat'=>$request->chat,
 				'file'=>'llamada',
 				'v'=>'1',
