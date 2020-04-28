@@ -3,24 +3,52 @@
 @section('css')
 <link rel="stylesheet" type="text/css" href="css/planes.css">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/fonts/zocial/zocial.css') }}">
+
 @endsection
 @section('js')
 <script type="text/javascript">
 
 $(".default").css({'background-image':'url("/img/tarjetas/multimarca.png")'});
+
 $(".default").attr('disabled','disabled');
+
+$(".nodefault").attr('disabled','disabled');
+$(".nodefault").css({'background-image':'url("/img/tarjetas/multimarca.png")'});
 
 $(".condiciones").on('click',function(){
   if($('.condiciones').is(':checked') )
   {
     $(".default").removeAttr("disabled");
+    $(".nodefault").removeAttr('disabled');
   }
   else
   {
   $(".default").attr('disabled','disabled');
+  $(".nodefault").attr('disabled','disabled');
   }
 //
 });
+
+$(".nodefault").on('click',function(){
+        $(".default").click();
+});
+
+
+    /*$(".default").on('click',function(){
+        
+        var xd1 = $("#select_1").val();
+        var xd2 = $("#select_2").val();
+        
+        if(xd1 == null || xd1 == "")
+        {
+            <?php
+                $amount= "0";
+            ?>
+            
+            {{$amount}} = xd2;
+        }
+        
+    });*/
 
 
 
@@ -167,10 +195,14 @@ $(".condiciones").on('click',function(){
                                     //exit();
                                     ?>
 
-
+<!--
+value="m"
+value="t"
+-->
 <select class="form-control" id="select_1">
-  <option value="m">${{$porciones[0]}} <label>/ MES</label> </option>
-  <option value="t">${{ $porciones[1] }} <label>/ TRIMESTRAL  </label> <label>, AHORRA 20% APROX.</label> </option>
+  <option value="">-- Seleccione tiempo --</option>
+  <option value="{{$porciones[0]}}">${{$porciones[0]}} <label>/ MES</label> </option>
+  <option value="{{ $porciones[1] }}">${{ $porciones[1] }} <label>/ TRIMESTRAL  </label> <label>, AHORRA 20% APROX.</label> </option>
 </select>
 
 
@@ -352,7 +384,7 @@ $(".condiciones").on('click',function(){
   $formulario="
   <form action=\"https://www.laboraplanet.com/planes?entorno=$entorno&purchaseNumber={$numorden}&amount={$amount}\" method='post'>
           $token
-    <script src=\"$urljs\"
+    <script class='weed' src=\"$urljs\"
       data-sessiontoken=\"$sessionToken\"
       data-merchantid=\"$merchantId\"
       data-channel=\"web\"
@@ -466,13 +498,18 @@ $(".condiciones").on('click',function(){
                                 <div class="price yellow" style="color: #ffce55;">
 
                                 <?php
-                                $completo = $plangolden->price;
-                                $porciones1 = explode(",", $completo);
+                                $completo2 = $plangolden->price;
+                                $porciones2= explode(",", $completo2);
                                 ?>
 
+<!--
+value='m'
+value='t'
+-->
                                 <select class="form-control" id="select_2">
-                                  <option value='m'>${{$porciones[0]}} <label>/ MES</label> </option>
-                                  <option value='t'>${{ $porciones[1] }} <label>/ TRIMESTRAL  </label> <label>, AHORRA 20% APROX.</label> </option>
+                                  <option value="">-- Seleccione tiempo --</option>
+                                  <option value='{{$porciones2[0]}}'>${{$porciones2[0]}} <label>/ MES</label> </option>
+                                  <option value='{{ $porciones2[1] }}'>${{ $porciones2[1] }} <label>/ TRIMESTRAL  </label> <label>, AHORRA 20% APROX.</label> </option>
                                 </select>
 
                                 </div>
@@ -489,10 +526,13 @@ $(".condiciones").on('click',function(){
                                 <!--<div id="paypal-button-m-p"></div>-->
                                 <div id="paypal-button-t-p" style="display:none"></div>
                               <!--<p>o</p>-->
-                            <div class="">
-
+                            <div class="" style="border:solid 5px black;">
+<button type="button" class="start-js-btn modal-opener nodefault" style="width: 187px;height: 40px;"></button>
 
                         </div>
+                        <br/>
+                        <input type="checkbox" name="condiciones" class="condiciones">
+                        <label for="condiciones"><a href="https://www.laboraplanet.com/terminos" target="_blank">Acepto los términos y condiciones</a></label>
 
 <script>
 

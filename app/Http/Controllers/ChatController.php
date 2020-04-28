@@ -111,12 +111,12 @@ Class ChatController extends Controller
 	}
 
 	public function getchat(Request $request){
-
+		  $proyecto = $request->proyecto;
+		  
+		
 		  $id = $request->id;
-		  // $id = 287;
 		  $rol = $request->rol;
-		//agregado
-		 $mo = Chat::where('id_contacto',Auth::user()->id)
+		$mo = Chat::where('id_contacto',Auth::user()->id)
 					->where('file','notificacion')
 					->where('id_usuario',$id)
 					->where('v',1)
@@ -129,34 +129,29 @@ Class ChatController extends Controller
 			}
 		}
 		$select = 0;
-		/*  $ch = Contactos::where('id_usuario',Auth::user()->id)
-		  				  ->where('id_contacto',$id)
-		  				  ->first();
-		  if ($ch) {
-		  	$selectpro = Select_project::where('id_contactos',$ch->id)->first();
-		  	if ($selectpro) {
-		  	$select = $selectpro->proyecto;
-		  	}
-		  }*/
-		//fin
-         Chat::where('id_contacto',Auth::user()->id)
-					->where('id_usuario',$id)
-					->where('v',1)
-					->update(['v'=>0]);
-
-         //The reason of the orWhere is  that one user could became an contact too
-        $chat = Chat::where(function($query) use ($id){
-            $query->where('id_usuario',Auth::user()->id)
-                  ->where('id_contacto',$id);                  
-        })->orWhere(function($query) use ($id){
-            $query->where('id_usuario',$id)
-            ->where('id_contacto',Auth::user()->id);
-        })->get();
-
 		  // $ch = Contactos::where('id_usuario',Auth::user()->id)
 		  // 				  ->where('id_contacto',$id)
-		  // 				  ->where('rol','')
-		  // 				  ->get();
+		  // 				  ->first();
+		  // if ($ch) {
+		  // 	$selectpro = Select_project::where('id_contactos',$ch->id)->first();
+		  // 	if ($selectpro) {
+		  // 	$select = $selectpro->proyecto;
+		  // 	}
+		  // }
+        Chat::where('id_contacto',Auth::user()->id)
+					->where('id_usuario',$id)
+					->where('v',1)
+					->where('proyecto',$proyecto)
+					->update(['v'=>0]);
+					
+	    Chat::where('id_contacto',Auth::user()->id)
+				->where('id_usuario',$id)
+				->where('v',2)
+				->where('proyecto',$proyecto)
+				->update(['v'=>3]);
+
+     
+
 		$trabajos=array();
 		$mistrabajos= Applied_Jobs::where('id_user_employer',$id)
 									->where('id_user_employee',Auth::user()->id)
@@ -164,34 +159,53 @@ Class ChatController extends Controller
 									->join('proyecto as p','p.id','=','id_project')
 									->select('id_project','titulo','economic_proposal','cantidad_tiempo','tiempo_entrega')
 									->orderBy('id_trabajo_aplicado','desc')
-
 									->get();
-
-		    $trabajos = Applied_Jobs::where('id_user_employer',Auth::user()->id)
+		if ($rol==1) {
+			$trabajos = Proyecto::where('usuario',Auth::user()->id)
+								  ->select('id as id_project','titulo','presupuesto as economic_proposal','cantidad_tiempo','tiempo_entrega')
+								  ->orderBy('id','desc')
+								  ->get();
+		}else{
+		$trabajos = Applied_Jobs::where('id_user_employer',Auth::user()->id)
 								->where('id_user_employee',$id)
 								->whereNotIn('state_aplication',['6','4'])
 								->join('proyecto as p','p.id','=','id_project')
 								->select('id_project','titulo','economic_proposal','time_finish as cantidad_tiempo','type_time as tiempo_entrega')
-							    ->orderBy('id_project','desc')
+								->orderBy('id_trabajo_aplicado','desc')
 								->get();
-								
-			if(count($trabajos)==0 && $id!=380 && count($mistrabajos)==0){
-			    $trabajos = Proyecto::where('usuario',Auth::user()->id)
-			  ->select('id as id_project','titulo',DB::raw('ROUND((presupuesto+(presupuesto*0.09)),2) as economic_proposal'),'cantidad_tiempo','tiempo_entrega')
-			  ->orderBy('id','desc')
-			  ->get();
-			}
-
+		}
 		// print_r($trabajos."");exit;
-        if (count($trabajos)>0) {
+		
+
+
+
+		if (count($trabajos)>0) {
 			$select = $trabajos[0]->id_project;
 		}else{
 			if (count($mistrabajos)>0) {
 				$select = $mistrabajos[0]->id_project;
 			}
 		}
+		  if ($proyecto!="") {
+				$select = $proyecto;
+		  }
         
-        	//print_r($trabajos."");exit;
+        $chat = Chat::where(function($query) use ($id,$select){
+            $query->where('id_usuario',Auth::user()->id)
+                  ->where('id_contacto',$id)
+                  ->where(function($query2) use ($select){
+                      $query2->where('proyecto',$select)
+                             ->orWhereNull('proyecto');
+                  });                  
+        })->orWhere(function($query) use ($id,$select){
+            $query->where('id_usuario',$id)
+            	  ->where('id_contacto',Auth::user()->id)
+                  ->where(function($query2) use ($select){
+                      $query2->where('proyecto',$select)
+                             ->orWhereNull('proyecto');
+                  });    
+        })->get();	
+        
         $envio[]= $chat;
         $envio[] = $trabajos;
         $envio[] = $mistrabajos;
@@ -201,39 +215,46 @@ Class ChatController extends Controller
 	public function sendchat(Request $request){
 
 		$id = $request->id_contacto;
+		$proyecto = $request->proyecto;
 			Chat::where(function($query) use ($id){
-				$query->whereIn('id_usuario',[Auth::user()->id,$id])
-						->whereIn('id_contacto',[$id,Auth::user()->id]);
+				$query->whereIn('id_usuario',[$id])
+						->whereIn('id_contacto',[Auth::user()->id]);
+						// ->where('proyecto',$proyecto)
 			})
 			->update(['v'=>0]);
-		//$f = date('Y-m-d H:i:s');
-		//$f2 = strtotime('-5 hour',strtotime($f));
-		//$d = date('Y-m-d H:i:s',$f2);
-		$verifi = User::where('id',$id)->where('activo',0)->first();
+			Chat::where(function($query) use ($id){
+				$query->whereIn('id_usuario',[Auth::user()->id])
+						->whereIn('id_contacto',[$id]);
+						// ->where('proyecto',$proyecto)
+			})
+			->update(['v'=>1]);
+		// $f = date('Y-m-d H:i:s');
+		// $f2 = strtotime('-5 hour',strtotime($f));
+		// $d = date('Y-m-d H:i:s',$f2);
+			$d =$request->fech;
+			$verifi = User::where('id',$id)->where('activo',0)->first();
 			if ($verifi) {
-				$this->aquixd($verifi->correo);
+				
 			}
-        $d =$request->fech;
-
-			//This creating now must be related to the project too
+			// print_r($proyecto);exit();
 		if ($request->video==0) {
 		    Chat::create([
 	            'id_usuario'=>$request->id_usuario,
 	            'id_contacto'=>$request->id_contacto,
-	            'id_trabajo_aplicado'=> $request->id_trabajo_aplicado,
 	            'chat'=>$request->chat,
-	            'v'=>'1',
-				'fecha'=>$d
+	            'v'=>'2',
+				'fecha'=>$d,
+				'proyecto'=>$proyecto
 	        ]);
 		}else{
 			Chat::create([
 				'id_usuario'=>$request->id_usuario,
 				'id_contacto'=>$request->id_contacto,
-                'id_trabajo_aplicado'=> $request->id_trabajo_aplicado,
 				'chat'=>$request->chat,
 				'file'=>'llamada',
-				'v'=>'1',
-				'fecha'=>$d
+				'v'=>'2',
+				'fecha'=>$d,
+				'proyecto'=>$proyecto
 			]);
 		}
 
@@ -242,15 +263,16 @@ Class ChatController extends Controller
 	}
 	public function file_chat(Request $request){
 		$r = "Archivo";
-			//$f = date('Y-m-d H:i:s');
-		//$f2 = strtotime('-5 hour',strtotime($f));
-		//$d = date('Y-m-d H:i:s',$f2);
+		// $f = date('Y-m-d H:i:s');
+		// $f2 = strtotime('-5 hour',strtotime($f));
+		// $d = date('Y-m-d H:i:s',$f2);
 					$d =$request->fech;
+					$proyecto = $request->proyecto;
 		$v = Chat::create([
             'id_usuario'=>$request->id_usuario,
             'id_contacto'=>$request->id_contacto,
             'chat'=>$r,
-            'v'=>'1',
+            'v'=>'2',
             'file'=>$request->file('file')->store('chat'),
             'file_name'=>$request->file('file')->getClientOriginalName(),
 			'fecha'=>$d
@@ -296,12 +318,14 @@ Class ChatController extends Controller
 		// print_r($_FILES);
 		// print_r($request->all());
 		$r = "voz";
+		$proyecto = $request->proyecto;
 		$idf = $request->friend;
 		$id = Auth::user()->id;
-//		$f = date('Y-m-d H:i:s');
-//		$f2 = strtotime('-5 hour',strtotime($f));
-//		$d = date('Y-m-d H:i:s',$f2);
-					$d =$request->fech;
+		// $f = date('Y-m-d H:i:s');
+		// $f2 = strtotime('-5 hour',strtotime($f));
+		// $d = date('Y-m-d H:i:s',$f2);
+		// print_r($request->all());exit();
+					$d = $request->fech;
 
 		$voz  = Chat::where('file','voz')->where('id_contacto',$idf)->where('id_usuario',$id)->count();
 		$vv = md5($id.($voz+1).$idf);
@@ -316,7 +340,8 @@ Class ChatController extends Controller
             'v'=>'1',
             'file'=>'voz',
             'file_name'=>$vv,
-			'fecha'=>$d
+			'fecha'=>$d,
+			'proyecto'=>$proyecto
         ]);
 		
 		return response()->json(['file_name'=>$vv,'date'=>$d]);

@@ -1,11 +1,6 @@
 /node_modules
 /public/hot
 /public/storage
-/public/css/app.css
-/public/js/app.js
-/public/mix-manifest.json
-package-lock.json
-composer.lock
 /storage/*.key
 /vendor
 /.idea

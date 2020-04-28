@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Plans;
 use DB;
 use App\Plan_users;
+use App\Money_moves;
 use Auth;
 use Carbon\Carbon;
 class PlanesController extends Controller 
@@ -77,7 +78,44 @@ public function visanet(Request $request)
 	    $idtransac = $c->order->transactionId;
 
 	          $id = Auth::user()->id;
-
+	            $mostrar = Plans::where('price','like','%'.$importe.'%')->get();
+	            $codigo = $mostrar[0]->id_plan;
+	            $pl = $mostrar[0]->name_plan;
+                $price=explode (",",$mostrar[0]->price);
+                $sf = "";
+                if($price[0]==$importe){
+                    $sf= "1 month";
+                }elseif($price[1]==$importe){
+                    $sf= "3 month";
+                }elseif($price[2]==$importe){
+                    $sf= "1 year";
+                }
+                 $fecha_actual = date("Y-m-d");
+          $fecha_final= date("Y-m-d",strtotime($fecha_actual."+ ".$sf));
+                $precio = $importe;
+                $verificar = Plan_users::where('id_user',$id)->get();
+                 if (count($verificar)>0) {
+              $guardar = Plan_users::where('id_user',$id)->update([
+                'date_start'=>$fecha_actual,
+                'date_end'=> $fecha_final,
+                'id_plan'=>$codigo  
+                      ]);
+                  }else{
+                  $guardar = new  Plan_users();
+                  $guardar->id_user = $id;
+                  $guardar->id_plan =$codigo;
+                  $guardar->date_start=$fecha_actual;
+                  $guardar->date_end= $fecha_final ;
+                  $guardar->state = "1";
+                  $guardar->save();
+                  }
+                  $n = new Money_moves();
+                  $n->move = "Plan";
+                  $n->description = "Pago de menbresia ".$pl;
+                  $n->import_move = $precio;
+                  $n->date_move= $fecha_actual;
+                  $n->user_id = $id;
+                  $n->save();
 
 
 	    return redirect()->route('recibo_pago_planes',compact('numpedido','numautori','comprador','numtarje','fechayhoralleva','importe','moneda','comentarios','idtransac'));

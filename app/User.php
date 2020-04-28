@@ -156,16 +156,20 @@ class User extends Authenticatable
     }
 
     public function chat(){
-              return $this->hasMany('App\Contactos','id_usuario','id')
-                    ->select('nombres','apellidos','imagen','perfil','u.id','c.codigo_pais','ch.v','precio_hora','usuario','rol')
+  $ee = $this->hasMany('App\Contactos','id_usuario','id')
+                    ->select('ch.id_usuario as id_u','ch.id as aa','ch.chat','nombres','apellidos','imagen','perfil','u.id','c.codigo_pais','ch.v','precio_hora','usuario','rol')
                     ->join('usuario as u','u.id','=','id_contacto')
                     ->LeftJoin('countries as c','c.id_country','=','u.pais')
                     ->LeftJoin('chat as ch',function($join){
-                        $join->on('ch.id_usuario','=','u.id')
-                        ->where('ch.v',1)
-                        ->where('ch.id_contacto',Auth::user()->id);
+                        $join->whereIn('ch.id_usuario',[DB::raw('u.id'),Auth::user()->id])
+                        ->whereIn('ch.id_contacto',[DB::raw('u.id'),Auth::user()->id])
+                        ->whereIn('ch.v',[2,3])
+                        ->orderBy('desc');
                     })
-                    ->distinct();
+                    ->distinct();   
+                    // ->get();
+                    // print_r($ee);exit;
+                    return $ee;
     }
 
 

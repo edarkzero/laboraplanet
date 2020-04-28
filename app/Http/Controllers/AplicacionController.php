@@ -185,7 +185,8 @@ $nomproyect = Proyecto::where('id',$request->codigo)->select('titulo')->get();
 			          'v'=>'1',
 			          'fecha'=>$d,
 			          'file'=>'notificacion',
-			          'file_name'=>$noti->id_notification
+			          'file_name'=>$noti->id_notification,
+			          'proyecto'=>$proyect
 			        ]);
 		//FIN DE LA TABLA CONTACTOS
 
