@@ -1,3 +1,8 @@
+# Formato de planes
+- Los planes tienen en una sola columna "price", un conjunto de precios, separados X veces
+    - Si, es "5" entonces muestra 5$
+    - Si, es "20,12,4" entonces muestra 20$, otro 12$ y otro 4$
+
 # Estructura de componentes
 - Se esta usando Vue solo para el chat, aparentemente no se usa en mas ningun otro sitio
 - El componente <general> es el componente principal de los scripts de Vue
