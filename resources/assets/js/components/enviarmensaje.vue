@@ -1,7 +1,7 @@
 <template>
 	<div class="panel-footer">            	
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="aaaEnter your message here..." v-on:keyup.enter="enviarChat" v-model="chat">
+            <input type="text" class="form-control" placeholder="Enter your message here..." v-on:keyup.enter="enviarChat" v-model="chat">
             <span class="input-group-btn">
             <label>
             	<button class="btn btn-primary btn-gradient" type="button" v-on:click="$refs.arcc.click()"><i class="imoon imoon-attachment"></i></button>

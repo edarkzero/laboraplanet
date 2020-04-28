@@ -1,3 +1,35 @@
+# Estructura de componentes
+- Se esta usando Vue solo para el chat, aparentemente no se usa en mas ningun otro sitio
+- El componente <general> es el componente principal de los scripts de Vue
+- El archivo app.js posee el conjunto de componentes a usar
+
+# Dependencias de mensajes
+- TODO
+
+# Requerimientos
+- Chat bot
+
+- [ ] Los mensajes en el chat deben estar vinculados con el proyecto y el colaborador. Por ejemplo el siguiente usuario es diseñador web , y no ha postulado al proyecto “Diseñador gràfico” pero el empleador inicia una conversación con él luego de buscar perfiles, este usuario Raúl Gonzales no debería aparecer en la conversación de mi otro proyecto que es “Traductor”. Esta conversación solo debe aparecer si selecciono el proyecto al que él postuló y si no tiene un proyecto como en este caso no debería mostrar ningúna opción en la lista.
+- [ ] En la siguiente sección desde el icono de notificaciones de chat cuando pico al nombre me lleva al perfil del usuario , est debe ser similar a como lo maneja Facebook, click en cual parte del área sombreada me lleva a la ventana de chat. Y ya cuando estoy en la ventana de chat si pico a la foto , entonces recién me lleva al perfil , el cual debe mostrarse sin ocultarse la ventana de chat.
+- [ ] Los mensajes leìdos no se estàn visualizando como leído por parte de ninguno (empleador o colaborador). 
+- [ ] En la lista de proyectos de la ventana de chat Se están mostrando todos los proyectos, y no está mal, pero la idea sería que se muestre la conversación correspondiente al proyecto , adicionalmente no deben haber botones  ni precios (porque no ha aplicado a ningún proyecto, no hay propuesta económica y para contratar  se requiere asignarlo a algún proyecto). Adicionalmente recordar que el usuario puede ser empleador y colaborador a la vez. Entonces se debe ver la forma de que se distingan claramente los proyectos que son de publicación y los proyectos que son de postulación. En este print por ejemplo: Rosario Alvarez es empresaria e intentó contactar a la usuaria coyasumak, pero a esta le aparece Rosario con la posibilidad de contratar y puede contratarla incluso para un proyecto que ella no ha postulado, es necesario corregir lo antes posible.
+- [ ] También para el caso  cuando un colaborador no es notificado para un proyecto , pero él busca y aplica en el chat debe figurar el nombre del proyecto, en este caso El usuario coyasumak aplicó a un proyecto denominado “ marketing digital”, sin ser notificada (lo cual es válido), pero en la lista de requerimientos  del chat no se muestra el proyecto o requerimiento al cual está postulando.
+- [ ] También si labochat envía mensaje para un colaborador respecto a un requerimiento publicado , se debe enfocar el proyecto asociado a esta notificación (actualmente me muestra la lista y no se sabe a qué proyecto pertenece la propuesta) y su respectivo presupuesto (proveniente de la publicación) , pero no debe llevar el botón contratar, en este caso debe llevar el botón postular (porque la notificación fue para colaborador). En este ejemplo me notifican como colaboradora , pero me aparece el botón contratar y no me muestra el proyecto asociado.
+- [ ] Si pico a esa área tambien debería poder ir a la conversación.
+- [ ] Como colaborador Click sobre la foto del empleador (logo )o el nombre me debe llevar a su perfil de empleador.
+- [ ] Como colaborador Click sobre el nombre del proyecto , me debe llevar al detalle del proyecto quizá colocar un enlace sobre el nombre de tal forma que el colaborador pueda ir a ver el detalle , También como colaborador debo ver el botón aplicar o postular en lugar de contratar y el precio que debo ver , es el precio que publicó el empleador al momento dela creación del requerimiento. La descripción del proyecto solo lo puedo ver en la lista de proyectos publicados (desde la búsqueda del menu inicio) , habría que ver la forma de apuntar al mismo contenido.
+- [ ] Como empleador, click  a la foto o al nombre del colaborador me debe llevar a su perfil de colaborador. Así mismo el precio que veo es de la postulación (propuesta económica del colaborador).
+- [ ] Como empleador click sobre el nombre del proyecto , me debe llevar a la propuesta del colaborador. La propuesta actualmente  , solo lo puedo ver desde la opción emplear/mis requerimientos, picas a la personita y allí se encuentra el detalle de la propuesta, también sería cosa de enlazar al mismo contenido
+- [ ] La propuesta actualmente  , solo lo puedo ver desde la opción emplear/mis requerimientos, picas a la personita y allí se encuentra el detalle de la propuesta, también sería cosa de enlazar al mismo contenido 
+- [ ] En la siguiente pantalla , se debería mostrar solo los proyectos a los que aplica el trabajador.
+- [ ] A nivel móviles, el envío del chat no funciona con la tecla enter. 
+
+# Consultas la BDD
+- Relaciones de usuarios
+
+    - Poseen una clave foranea con user_cono y solici_men
+
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">

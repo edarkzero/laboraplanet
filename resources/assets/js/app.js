@@ -18,6 +18,10 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('chat',require('./components/Chat.vue').default);
 Vue.component('enviar',require('./components/enviarmensaje.vue').default);
+Vue.component('general',require('./components/general.vue').default);
+Vue.component('conver',require('./components/conver.vue').default);
+Vue.component('list',require('./components/list.vue').default);
+Vue.component('notificacion',require('./components/notificacion.vue').default);
 
 const app = new Vue({
     el: '#app',

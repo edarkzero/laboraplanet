@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="keywords" content=""/>
   <meta name="description" content="La mayor red de autoempleo y trabajo desde casa, contrata excelentes profesionales freelance certificados. Chat en vivo, videollamadas y  grupos de interés para un proyecto exitoso.">
-  <meta name="author" content="Esto no tiene futuro y nunca se van a dar cuenta :v">
+  <meta name="author" content="Labora Planet">
 
 <meta name="google-site-verification" content="2PXj6yctEMAAzsnaUM4S0HBVznD1fbC0gQQghDnZ-00" />
 <meta name="googlebot" content="noimageindex" />
@@ -178,11 +178,11 @@
         @if(Request::url()!=route('listar_chat') && Request::url()!=route('listar_trabajador'))
             @if(Auth::user()->flag == 1)
             <li class="dropdown menu-merge" id="app">
-              <general v-bind:lista="{{ Auth::user()->chat }}" v-bind:chats="[]" v-bind:user="[{{ Auth::user()->id }},`{{ Auth::user()->nombres." ".Auth::user()->apellidos }}`,`{{ Auth::user()->imagen }}`]"></chat>
+              <general v-bind:lista="{{ Auth::user()->chat }}" v-bind:chats="[]" v-bind:user="[{{ Auth::user()->id }},`{{ Auth::user()->nombres." ".Auth::user()->apellidos }}`,`{{ Auth::user()->imagen }}`]"></general>
             </li>
             @elseif(Auth::user()->flag == 2)
             <li class="dropdown menu-merge" id="app">
-              <general v-bind:lista="{{ Auth::user()->chat }}" v-bind:chats="[]" v-bind:user="[{{ Auth::user()->id }},`{{ Auth::user()->nombres." ".Auth::user()->apellidos }}`,`{{ Auth::user()->imagen }}`]"></chat>
+              <general v-bind:lista="{{ Auth::user()->chat }}" v-bind:chats="[]" v-bind:user="[{{ Auth::user()->id }},`{{ Auth::user()->nombres." ".Auth::user()->apellidos }}`,`{{ Auth::user()->imagen }}`]"></general>
             </li>
             @endif
         @endif
@@ -949,7 +949,7 @@
       <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
 
 
- <script src="{{ asset('js/app1.js') }}"></script>
+ <script src="{{ asset('js/app.js') }}"></script>
   <script src= "{{ asset('vendor/jquery/jquery-1.11.1.min.js')}}"></script>
   <script src="{{ asset('vendor/jquery/jquery_ui/jquery-ui.min.js')}}"></script>
   <script src="{{ asset('js/responsiveslides.min.js')}}"></script>
