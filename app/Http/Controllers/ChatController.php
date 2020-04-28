@@ -194,15 +194,13 @@ Class ChatController extends Controller
             $query->where('id_usuario',Auth::user()->id)
                   ->where('id_contacto',$id)
                   ->where(function($query2) use ($select){
-                      $query2->where('proyecto',$select)
-                             ->orWhereNull('proyecto');
+                      $query2->where('proyecto',$select);
                   });                  
         })->orWhere(function($query) use ($id,$select){
             $query->where('id_usuario',$id)
             	  ->where('id_contacto',Auth::user()->id)
                   ->where(function($query2) use ($select){
-                      $query2->where('proyecto',$select)
-                             ->orWhereNull('proyecto');
+                      $query2->where('proyecto',$select);
                   });    
         })->get();	
         
