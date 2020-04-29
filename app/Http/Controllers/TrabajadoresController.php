@@ -194,7 +194,10 @@ Class TrabajadoresController extends Controller{
     // print_r($postal."");exit();
 
     // return view('perfil',['pais'=>$pais,'categoria'=>$categoria,'estudios'=>$estudios,'experiencia'=>$experiencia,'noti'=>$noti,'habilidad'=>$habilidad,'usuarios'=>$usuarios,'proyecto'=>$proyecto,'cont'=>$cont,'postal'=>$postal,'comen'=>$comen,'conteoenviar'=>$conteoenviar] );
-    return view('verperfil',compact('user','pais','categoria','estudios','experiencia','noti','habilidad','usuarios','proyecto','cont','postal','comen','conteoenviar','certifi','llevaip','urll'));
+    if(!request()->isXmlHttpRequest())
+        return view('verperfil',compact('user','pais','categoria','estudios','experiencia','noti','habilidad','usuarios','proyecto','cont','postal','comen','conteoenviar','certifi','llevaip','urll'));
+    else
+        return view('verperfilajax',compact('user','pais','categoria','estudios','experiencia','noti','habilidad','usuarios','proyecto','cont','postal','comen','conteoenviar','certifi','llevaip','urll'));
 
   }
 

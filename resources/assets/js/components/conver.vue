@@ -104,7 +104,7 @@
                 </div>
               </div>
               <div class="media-right" style="">
-                <a href="#">
+                <a :href="urls+`/verperfil/`+friend[0]" @click.prevent="loadProfile(friend[0])">
                   <img v-if="user[2]!=''"class="media-object" alt="64x64" :src="user[2]" width="40" height="40">
                   <img v-else :src="urls+`img/none.png`" width="40" height="40">
                 </a>
@@ -114,7 +114,7 @@
             </div>
             <div class="media" style="width: 95%;min-width: 200px;max-width: 750px;float: left;padding: 5px" v-else-if="friend[0]==chat.id_usuario">
                 <div class="media-left">
-                  <a href="#">
+                  <a :href="urls+`/verperfil/`+friend[0]" @click.prevent="loadProfile(friend[0])">
                         <img v-if='friend[2]!=""' class="media-object" alt="64x64" :src="friend[2]" width="40" height="40">
                         <img v-else :src="urls+`img/none.png`" width="40" height="40">
                     </a>
@@ -183,6 +183,11 @@
             }
         },
         methods:{
+            loadProfile: function(id){
+                axios.get(this.urls+"verperfil/"+id).then((response)=>{
+                    document.getElementById("content_wrapper").innerHTML = response.data;
+                });
+            },
             select_g:function(){
               document.getElementById("proyecto_cu").value = this.pppro.split("|")[0]
               document.getElementById("c_"+this.friend[0]).click()

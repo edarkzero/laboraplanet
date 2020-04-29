@@ -1,5 +1,3 @@
-@extends('layouts.admin2')
-@section('css')
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--  <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'> -->
@@ -154,8 +152,7 @@
 
 
     </style>
-@endsection
-@section('js')
+
     <script src="{{ asset('select2/select2.min.js') }}"></script>
     <script src="{{ asset('vendor/plugins/globalize/globalize.min.js') }}"></script>
     <script src="{{ asset('vendor/plugins/moment/moment.min.js') }}"></script>
@@ -288,8 +285,7 @@
 
 
     </script>
-@endsection
-@section('contenido')
+
     <?php
     /////////////////////////////////////////////
     $fotousu = $user['imagen'];
@@ -1141,9 +1137,3 @@
 
     </section>
     <!-- End: Content -->
-
-
-
-
-
-@endsection
