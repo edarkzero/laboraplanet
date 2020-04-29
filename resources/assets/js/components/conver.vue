@@ -104,7 +104,7 @@
                 </div>
               </div>
               <div class="media-right" style="">
-                <a :href="urls+`/verperfil/`+friend[0]" @click.prevent="loadProfile(friend[0])">
+                <a :href="urls+`/verperfil/`+user[0]" @click.prevent="loadProfile(user[0])">
                   <img v-if="user[2]!=''"class="media-object" alt="64x64" :src="user[2]" width="40" height="40">
                   <img v-else :src="urls+`img/none.png`" width="40" height="40">
                 </a>
@@ -184,8 +184,11 @@
         },
         methods:{
             loadProfile: function(id){
-                axios.get(this.urls+"verperfil/"+id).then((response)=>{
-                    document.getElementById("content_wrapper").innerHTML = response.data;
+                const url = this.urls+"verperfil/"+id;
+                axios.get(url).then((response)=>{
+                    document.getElementById("content_wrapper").innerHTML = response.data.body;
+                    /*document.title = response.data.title;
+                    window.history.pushState({"html":response.data.html,pageTitle:response.data.title},'', url);*/
                 });
             },
             select_g:function(){

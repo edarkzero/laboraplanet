@@ -197,7 +197,11 @@ Class TrabajadoresController extends Controller{
     if(!request()->isXmlHttpRequest())
         return view('verperfil',compact('user','pais','categoria','estudios','experiencia','noti','habilidad','usuarios','proyecto','cont','postal','comen','conteoenviar','certifi','llevaip','urll'));
     else
-        return view('verperfilajax',compact('user','pais','categoria','estudios','experiencia','noti','habilidad','usuarios','proyecto','cont','postal','comen','conteoenviar','certifi','llevaip','urll'));
+        return response()->json([
+            'html' => view('verperfil',compact('user','pais','categoria','estudios','experiencia','noti','habilidad','usuarios','proyecto','cont','postal','comen','conteoenviar','certifi','llevaip','urll'))->render(),
+            'body' => view('verperfilajax',compact('user','pais','categoria','estudios','experiencia','noti','habilidad','usuarios','proyecto','cont','postal','comen','conteoenviar','certifi','llevaip','urll'))->render(),
+            'title' => 'LaboraPlanet'
+        ]);
 
   }
 
