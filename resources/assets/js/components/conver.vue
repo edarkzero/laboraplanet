@@ -187,8 +187,7 @@
                 const url = this.urls+"verperfil/"+id;
                 axios.get(url).then((response)=>{
                     document.getElementById("content_wrapper").innerHTML = response.data.body;
-                    /*document.title = response.data.title;
-                    window.history.pushState({"html":response.data.html,pageTitle:response.data.title},'', url);*/
+                    window.history.pushState(null,null, "verperfil/"+id);
                 });
             },
             select_g:function(){

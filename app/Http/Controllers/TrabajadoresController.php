@@ -198,7 +198,6 @@ Class TrabajadoresController extends Controller{
         return view('verperfil',compact('user','pais','categoria','estudios','experiencia','noti','habilidad','usuarios','proyecto','cont','postal','comen','conteoenviar','certifi','llevaip','urll'));
     else
         return response()->json([
-            'html' => view('verperfil',compact('user','pais','categoria','estudios','experiencia','noti','habilidad','usuarios','proyecto','cont','postal','comen','conteoenviar','certifi','llevaip','urll'))->render(),
             'body' => view('verperfilajax',compact('user','pais','categoria','estudios','experiencia','noti','habilidad','usuarios','proyecto','cont','postal','comen','conteoenviar','certifi','llevaip','urll'))->render(),
             'title' => 'LaboraPlanet'
         ]);

@@ -36,7 +36,7 @@
         <div class="panel-widget chat-widget" >
           <div class="panel-heading" style="background: #85d27a;color: black">
             <span v-if="friend.length>0 && friend[1].trim()!=''">
-              <a v-if="friend[0]!=380" :href="this.urls+`/verperfil/`+friend[0]"> <b>{{ friend[1].substr(0,21) }}</b></a>
+              <a v-if="friend[0]!=380" :href="this.urls+`/verperfil/`+friend[0]" @click.prevent="loadProfile(friend[0])"> <b>{{ friend[1].substr(0,21) }}</b></a>
             <a v-else href="javascript:void(0);"> <b>{{ friend[1].substr(0,21) }}</b></a></span>
             <span v-else>Chat</span>
             <!-- <a href="#" style="text-decoration-line: none;"><i class="glyphicon glyphicon-earphone" style="padding-left: 10px;color: black"></i></a> -->
@@ -97,6 +97,13 @@
       }
     },
      methods:{
+         loadProfile: function(id){
+             const url = this.urls+"verperfil/"+id;
+             axios.get(url).then((response)=>{
+                 document.getElementById("content_wrapper").innerHTML = response.data.body;
+                 window.history.pushState(null,null, "verperfil/"+id);
+             });
+         },
         mos:function(){
           if (this.a1==0) {
           document.getElementById("btn-activars").click();
