@@ -35,9 +35,9 @@ function create_json_post($post){
 }
 
 function contador(){
-    $archivo = '/home/laborapl/labora/app/Http/Controllers/librerias/contador.txt'; 
-    $contador = 
-    $contador = 0; 
+    //$archivo = '/home/laborapl/labora/app/Http/Controllers/librerias/contador.txt';
+    $archivo = app_path('Http/Controllers/librerias/contador.txt');
+    $contador = 0;
     $fp = fopen($archivo,"r"); 
     $contador = fgets($fp, 26); 
     fclose($fp); 
