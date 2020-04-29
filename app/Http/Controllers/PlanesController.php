@@ -79,7 +79,6 @@ public function visanet(Request $request)
 
 	          $id = Auth::user()->id;
 	            $mostrar = Plans::where('price','like','%'.$importe.'%')->get();
-	            dd($mostrar,$importe);
 	            $codigo = $mostrar[0]->id_plan;
 	            $pl = $mostrar[0]->name_plan;
                 $price=explode (",",$mostrar[0]->price);
