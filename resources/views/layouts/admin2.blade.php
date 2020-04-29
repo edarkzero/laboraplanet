@@ -26,6 +26,7 @@
 
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin-tools/admin-forms/css/admin-forms.css')}}">
 
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css')}}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/estilos.css')}}">
   <link rel="stylesheet" href="{{ asset('css/responsiveslides.css')}}">
   <link rel="stylesheet" href="{{ asset('css/estilos-slider.css')}}">
