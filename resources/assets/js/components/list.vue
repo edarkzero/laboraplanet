@@ -15,8 +15,8 @@
               </div>
               <div class="media-body cursor-pointer" style="width: 85%" v-on:click="mostrar(value.id,imagen(value.imagen),value.nombres+' '+value.apellidos,value.perfil,value.precio_hora,value.usuario,value.rol)">
                 <h5 class="media-heading">
-                  <a v-if="value.id!=380" href="javascript:void(0);" > {{ value.usuario }} &nbsp; </a>
-                  <a v-else href="javascript:void(0);"> {{ value.usuario }} &nbsp; </a>
+                  <a v-if="value.id!=380" href="javascript:void(0);" class="no-hover-underline" > {{ value.usuario }} &nbsp; </a>
+                  <a v-else href="javascript:void(0);" class="no-hover-underline"> {{ value.usuario }} &nbsp; </a>
                   <img v-if="value.codigo_pais!=undefined" :src="urls+`img/pais/`+value.codigo_pais+`.gif`"> </h5>
                  <span v-if="value.chat==null"> {{ value.perfil }}</span>
                  <span v-else>

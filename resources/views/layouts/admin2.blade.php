@@ -26,7 +26,7 @@
 
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin-tools/admin-forms/css/admin-forms.css')}}">
 
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css?v=2')}}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css?v=3')}}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/estilos.css')}}">
   <link rel="stylesheet" href="{{ asset('css/responsiveslides.css')}}">
   <link rel="stylesheet" href="{{ asset('css/estilos-slider.css')}}">
@@ -952,7 +952,7 @@
       <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
 
 
- <script src="{{ asset('js/app.js?v=13') }}"></script>
+ <script src="{{ asset('js/app.js?v=14') }}"></script>
   <script src= "{{ asset('vendor/jquery/jquery-1.11.1.min.js')}}"></script>
   <script src="{{ asset('vendor/jquery/jquery_ui/jquery-ui.min.js')}}"></script>
   <script src="{{ asset('js/responsiveslides.min.js')}}"></script>
