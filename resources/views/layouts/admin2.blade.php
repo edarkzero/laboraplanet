@@ -33,7 +33,6 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('vendor/plugins/magnific/magnific-popup.css')}}">
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/fonts/icomoon/icomoon.css') }} ">
   <link rel="stylesheet" type="text/css" href=" {{ asset('vendor/plugins/select2/css/select2.css')}}">
-
   <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150395955-1"></script>
 <script>
@@ -113,6 +112,9 @@
 <meta itemprop="image" content="https://www.laboraplanet.com/img/LogoVertical.png">
 </head>
 <body class="sb-top sb-top-lg" style="margin:0px">
+<script>
+    window.laravel_base_path = '{{ route('index') }}';
+</script>
 <?php $contar =0;?>
   <!-- Start: Main -->
   <div id="main">
@@ -950,7 +952,7 @@
       <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
 
 
- <script src="{{ asset('js/app.js?v=8') }}"></script>
+ <script src="{{ asset('js/app.js?v=13') }}"></script>
   <script src= "{{ asset('vendor/jquery/jquery-1.11.1.min.js')}}"></script>
   <script src="{{ asset('vendor/jquery/jquery_ui/jquery-ui.min.js')}}"></script>
   <script src="{{ asset('js/responsiveslides.min.js')}}"></script>

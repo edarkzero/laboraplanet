@@ -8,6 +8,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+Vue.prototype.$laravel_base_path = window.laravel_base_path;
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

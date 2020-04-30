@@ -98,10 +98,10 @@
     },
      methods:{
          loadProfile: function(id){
-             const url = this.urls+"verperfil/"+id;
+             const url = this.$laravel_base_path+"/verperfil/"+id;
              axios.get(url).then((response)=>{
                  document.getElementById("content_wrapper").innerHTML = response.data.body;
-                 window.history.pushState(null,null, "verperfil/"+id);
+                 //window.history.pushState(null,null, url);
              });
          },
         mos:function(){
