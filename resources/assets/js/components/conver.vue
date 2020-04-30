@@ -99,8 +99,9 @@
                   </audio>
                 </p>
                 <p v-else >{{ chat.chat }}</p>
-                <div style="font-size:10px;margin-top: -9px;margin-right: 5px;margin-bottom: -5px">{{chat.fecha.substring(11,16)}}
-                  <label style="display: none;"><i class="fa fa-check" ></i></label>
+                <div style="font-size:10px;margin-top: -9px;margin-right: 5px;margin-bottom: -5px">
+                    <label v-show="wasSeen(chat.v)"><i class="fa fa-check" ></i></label>
+                    {{chat.fecha.substring(11,16)}}
                 </div>
               </div>
               <div class="media-right" style="">
@@ -134,8 +135,8 @@
 
                   </p>
                   <p v-else style="word-wrap: break-word;">{{ chat.chat }}</p>
-                <div style="font-size:10px;margin-top: -9px;margin-left: 5px;margin-bottom: -5px">{{chat.fecha.substring(11,16)}} 
-                
+                <div style="font-size:10px;margin-top: -9px;margin-left: 5px;margin-bottom: -5px">{{chat.fecha.substring(11,16)}}
+                    <label v-show="wasSeen(chat.v)"><i class="fa fa-check" ></i></label>
                 </div>
                 </div>
             </div>
@@ -183,7 +184,10 @@
             }
         },
         methods:{
-            loadProfile: function(id){
+            wasSeen:(value) => {
+                return value === 3 || value === 0;
+            },
+            loadProfile: (id) => {
                 const url = this.$laravel_base_path+"/verperfil/"+id;
                 axios.get(url).then((response)=>{
                     document.getElementById("content_wrapper").innerHTML = response.data.body;
