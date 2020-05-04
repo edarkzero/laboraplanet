@@ -5,7 +5,7 @@
                           <input type="hidden" id="proyecto_cu">
           <div v-if="lista.length!=0">
 
-            <div class="media "  v-for="value in lista" v-if="(value.usuario).toUpperCase().indexOf(contacto.toUpperCase().trim())>=0">
+            <div class="media "  v-for="value in lista" v-if="(value.usuario ? value.usuario : '').toUpperCase().indexOf(contacto.toUpperCase().trim())>=0">
               <div class="media-left">
                  
                 <a href="javascript:void(0);" v-on:click="mostrar(value.id,imagen(value.imagen),value.nombres+' '+value.apellidos,value.perfil,value.precio_hora,value.usuario,value.rol)" :id="`c_`+value.id">  
