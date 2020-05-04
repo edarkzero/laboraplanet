@@ -100,7 +100,8 @@
                 </p>
                 <p v-else >{{ chat.chat }}</p>
                 <div style="font-size:10px;margin-top: -9px;margin-right: 5px;margin-bottom: -5px">
-                    <label v-show="wasSeen(chat.v)"><i class="fa fa-check" ></i></label>
+                    <label v-show="wasSeen(chat.v)"><i class="fa fa-check chat-header" ></i><i class="fa fa-check chat-seen" ></i></label>
+                    <label v-show="wasSent(chat.v)"><i class="fa fa-check" ></i></label>
                     {{chat.fecha.substring(11,16)}}
                 </div>
               </div>
@@ -136,7 +137,8 @@
                   </p>
                   <p v-else style="word-wrap: break-word;">{{ chat.chat }}</p>
                 <div style="font-size:10px;margin-top: -9px;margin-left: 5px;margin-bottom: -5px">{{chat.fecha.substring(11,16)}}
-                    <label v-show="wasSeen(chat.v)"><i class="fa fa-check" ></i></label>
+                    <label v-show="wasSeen(chat.v)"><i class="fa fa-check chat-header" ></i><i class="fa fa-check chat-seen" ></i></label>
+                    <label v-show="wasSent(chat.v)"><i class="fa fa-check" ></i></label>
                 </div>
                 </div>
             </div>
@@ -186,6 +188,9 @@
         methods:{
             wasSeen:(value) => {
                 return value === 3 || value === 0;
+            },
+            wasSent:(value) => {
+                return value === 1 || value === 2 || value == null;
             },
             loadProfile: (id) => {
                 const url = this.$laravel_base_path+"/verperfil/"+id;

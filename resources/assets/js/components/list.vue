@@ -20,7 +20,7 @@
                   <img v-if="value.codigo_pais!=undefined" :src="urls+`img/pais/`+value.codigo_pais+`.gif`"> </h5>
                  <span v-if="value.chat==null"> {{ value.perfil }}</span>
                  <span v-else>
-                  <i class="fa fa-check" v-if="value.v==3 && value.id_u==user[0]" style="color: blue"></i>
+                  <i class="fa fa-check" v-if="value.v==3 && value.id_u==user[0]"></i>
                   <i v-else-if="value.id_u!=user[0] "></i>
                   <i class="fa fa-check" v-else></i> {{ value.chat }}
                  </span> 
