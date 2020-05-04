@@ -160,7 +160,9 @@ Class ChatController extends Controller
 									->select('id_project','titulo','economic_proposal','cantidad_tiempo','tiempo_entrega')
 									->orderBy('id_trabajo_aplicado','desc')
 									->get();
-		if ($rol==1) {
+
+		//Este bloque comentado estaba originalmente, pero se vio que falla
+		/*if ($rol==1) {
 			$trabajos = Proyecto::where('usuario',Auth::user()->id)
 								  ->select('id as id_project','titulo','presupuesto as economic_proposal','cantidad_tiempo','tiempo_entrega')
 								  ->orderBy('id','desc')
@@ -173,7 +175,15 @@ Class ChatController extends Controller
 								->select('id_project','titulo','economic_proposal','time_finish as cantidad_tiempo','type_time as tiempo_entrega')
 								->orderBy('id_trabajo_aplicado','desc')
 								->get();
-		}
+		}*/
+		//Este bloque lo añado pues es como deberia de funcionar
+        $trabajos = Applied_Jobs::where('id_user_employer',Auth::user()->id)
+            ->where('id_user_employee',$id)
+            ->whereNotIn('state_aplication',['6','4'])
+            ->join('proyecto as p','p.id','=','id_project')
+            ->select('id_project','titulo','economic_proposal','time_finish as cantidad_tiempo','type_time as tiempo_entrega')
+            ->orderBy('id_trabajo_aplicado','desc')
+            ->get();
 		// print_r($trabajos."");exit;
 		
 
@@ -202,12 +212,13 @@ Class ChatController extends Controller
                   ->where(function($query2) use ($select){
                       $query2->where('proyecto',$select);
                   });    
-        })->get();	
+        })->get();
         
         $envio[]= $chat;
         $envio[] = $trabajos;
         $envio[] = $mistrabajos;
         $envio[] = $select;
+
         return $envio;
 	}
 	public function sendchat(Request $request){

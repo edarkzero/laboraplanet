@@ -1,10 +1,16 @@
 # Indice
+- [Roles](Roles)
 - [Consultas a la BDD](#consultas-la-bdd)
 - [Archivo de contador](#Archivo de contador)
 - [Formato de planes](#Formato de planes)
 - [Estructura de componentes](#Estructura de componentes)
 - [Notas sobre los chats](#Notas sobre los chats)
 - [Requerimientos](#Requerimientos)
+
+# Roles
+- Se observan dos roles en el sistema:
+    - Rol `0` es ``
+    - Rol `1` es `` 
 
 # Consultas la BDD
 - Relaciones de usuarios
