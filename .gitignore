@@ -10,3 +10,7 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 .env
+/composer.lock
+/package-lock.json
+/app/Http/Controllers/librerias/contador.txt
+/public/mix-manifest.json

@@ -1,8 +1,18 @@
+# Indice
+- [Consultas a la BDD](#consultas-la-bdd)
+- [Archivo de contador](#Archivo de contador)
+- [Formato de planes](#Formato de planes)
+- [Estructura de componentes](#Estructura de componentes)
+- [Notas sobre los chats](#Notas sobre los chats)
+- [Requerimientos](#Requerimientos)
+
 # Consultas la BDD
 - Relaciones de usuarios
 
     - Poseen una clave foranea con user_cono y solici_men
-
+# Archivo de contador
+- El archivo [contador.txt](app/Http/Controllers/librerias/contador.txt) debe ser creado, si no, va a existir un problema de escritura cuando se intenta actualizar este contador.
+- TODO: Se debe identificar el uso de este contador
 # Formato de planes
 - Los planes tienen en una sola columna "price", un conjunto de precios, separados X veces
     - Si, es "5" entonces muestra 5$
@@ -26,7 +36,7 @@
 - [x] Los mensajes en el chat deben estar vinculados con el proyecto y el colaborador. Por ejemplo el siguiente usuario es diseñador web , y no ha postulado al proyecto “Diseñador gràfico” pero el empleador inicia una conversación con él luego de buscar perfiles, este usuario Raúl Gonzales no debería aparecer en la conversación de mi otro proyecto que es “Traductor”. Esta conversación solo debe aparecer si selecciono el proyecto al que él postuló y si no tiene un proyecto como en este caso no debería mostrar ningúna opción en la lista.
 - [x] En la siguiente sección desde el icono de notificaciones de chat cuando pico al nombre me lleva al perfil del usuario , est debe ser similar a como lo maneja Facebook, click en cual parte del área sombreada me lleva a la ventana de chat. Y ya cuando estoy en la ventana de chat si pico a la foto , entonces recién me lleva al perfil , el cual debe mostrarse sin ocultarse la ventana de chat.
 - [x] Los mensajes leìdos no se estàn visualizando como leído por parte de ninguno (empleador o colaborador). 
-- [ ] En la lista de proyectos de la ventana de chat Se están mostrando todos los proyectos, y no está mal, pero la idea sería que se muestre la conversación correspondiente al proyecto , adicionalmente no deben haber botones  ni precios (porque no ha aplicado a ningún proyecto, no hay propuesta económica y para contratar  se requiere asignarlo a algún proyecto). Adicionalmente recordar que el usuario puede ser empleador y colaborador a la vez. Entonces se debe ver la forma de que se distingan claramente los proyectos que son de publicación y los proyectos que son de postulación. En este print por ejemplo: Rosario Alvarez es empresaria e intentó contactar a la usuaria coyasumak, pero a esta le aparece Rosario con la posibilidad de contratar y puede contratarla incluso para un proyecto que ella no ha postulado, es necesario corregir lo antes posible.
+- [x] En la lista de proyectos de la ventana de chat Se están mostrando todos los proyectos, y no está mal, pero la idea sería que se muestre la conversación correspondiente al proyecto , adicionalmente no deben haber botones  ni precios (porque no ha aplicado a ningún proyecto, no hay propuesta económica y para contratar  se requiere asignarlo a algún proyecto). Adicionalmente recordar que el usuario puede ser empleador y colaborador a la vez. Entonces se debe ver la forma de que se distingan claramente los proyectos que son de publicación y los proyectos que son de postulación. En este print por ejemplo: Rosario Alvarez es empresaria e intentó contactar a la usuaria coyasumak, pero a esta le aparece Rosario con la posibilidad de contratar y puede contratarla incluso para un proyecto que ella no ha postulado, es necesario corregir lo antes posible.
 - [ ] También para el caso  cuando un colaborador no es notificado para un proyecto , pero él busca y aplica en el chat debe figurar el nombre del proyecto, en este caso El usuario coyasumak aplicó a un proyecto denominado “ marketing digital”, sin ser notificada (lo cual es válido), pero en la lista de requerimientos  del chat no se muestra el proyecto o requerimiento al cual está postulando.
 - [ ] También si labochat envía mensaje para un colaborador respecto a un requerimiento publicado , se debe enfocar el proyecto asociado a esta notificación (actualmente me muestra la lista y no se sabe a qué proyecto pertenece la propuesta) y su respectivo presupuesto (proveniente de la publicación) , pero no debe llevar el botón contratar, en este caso debe llevar el botón postular (porque la notificación fue para colaborador). En este ejemplo me notifican como colaboradora , pero me aparece el botón contratar y no me muestra el proyecto asociado.
 - [ ] Si pico a esa área tambien debería poder ir a la conversación.
