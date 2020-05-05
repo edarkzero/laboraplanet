@@ -1,4 +1,5 @@
 # Indice
+- [Video Llamada](Video Llamada)
 - [Roles](Roles)
 - [Consultas a la BDD](#consultas-la-bdd)
 - [Archivo de contador](#Archivo de contador)
@@ -6,6 +7,10 @@
 - [Estructura de componentes](#Estructura de componentes)
 - [Notas sobre los chats](#Notas sobre los chats)
 - [Requerimientos](#Requerimientos)
+
+# Video Llamada
+- Esta usando el API tokbox
+- Se llama a la ruta `/video_chat/:id`
 
 # Roles
 - Se observan dos roles en el sistema:
